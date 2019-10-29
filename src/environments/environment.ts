@@ -5,5 +5,9 @@
 
 export const environment = {
   production: false,
-  api_url: 'https://conduit.productionready.io/api'
+  api_url: 'https://conduit.productionready.io/api',
+  KEYCLOAK_URL :'http://localhost:8080/auth',
+  KEYCLOAK_REALM : 'roger',
+  KEYCLOAK_CLIENT_ID : 'roger',
+  REDIRECT_URL: 'http://localhost:4200'
 };
