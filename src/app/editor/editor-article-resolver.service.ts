@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
-import { Article, ArticlesService, UserService } from '../shared';
+import { Article, ArticlesService, UserService, Errors } from '../shared';
 
 @Injectable()
 export class EditableArticleResolver implements Resolve<Article> {
+    errors: Errors = {errors: {}};
+
     constructor(
         private articlesService: ArticlesService,
         private router: Router,
@@ -23,8 +25,17 @@ export class EditableArticleResolver implements Resolve<Article> {
                      return article;
                    } else {
                      this.router.navigateByUrl('/');
+                     return Observable.of(null);
                    }
                  }
-               ).catch((err) => this.router.navigateByUrl('/'));
+               )
+//               .catch((err) => this.router.navigateByUrl('/'));
+
+               .catch(err => 
+                  {
+                    console.log(err);
+                    this.router.navigateByUrl('/');
+                    return Observable.of(null);
+               });
       }
 }
