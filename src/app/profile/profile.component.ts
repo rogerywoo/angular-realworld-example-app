@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
     ) {}
   
     ngOnInit() {
+        // Subscribe to data resolved from profile-resolver.
         this.route.data.subscribe(
             (data: {profile: Profile}) => {
                 this.profile = data.profile;
